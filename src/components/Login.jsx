@@ -28,7 +28,10 @@ const Login = () => {
   );
 };
 
-const Container = styled.div``;
+const Container = styled.div`
+  padding: 0px;
+`;
+
 const Nav = styled.div`
   max-width: 1128px;
   margin: auto;
@@ -40,6 +43,7 @@ const Nav = styled.div`
   flex-wrap: nowrap;
   & > a {
     width: 135px;
+    height: 34px;
     @media (max-width: 768px) {
       padding: 0 5px;
     }
@@ -74,10 +78,9 @@ const SignIn = styled.a`
   background-color: rgba(0, 0, 0, 0);
   &:hover {
     background-color: rgba(112, 181, 249, 0.15);
-    color: color: #0a66c2;
+    color: #0a66c2;
     text-decoration: none;
-    
-}
+  }
 `;
 
 const Section = styled.section`
@@ -116,7 +119,7 @@ const Hero = styled.div`
     }
   }
   img {
-    z-index: -1;
+    /* z-index: -1; */
     width: 700px;
     height: 670px;
     position: absolute;
