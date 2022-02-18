@@ -1,11 +1,10 @@
 import { signInWithPopup, onAuthStateChanged } from "firebase/auth";
-import { getStorage, ref, uploadBytes } from "firebase/storage";
-import { provider } from "../firebase";
+import { ref, uploadBytes, uploadBytesResumable } from "firebase/storage";
+import { provider, storage } from "../firebase";
 import { SET_USER } from "./actionType";
 import { getAuth } from "firebase/auth";
 
 const auth = getAuth();
-const storage = getStorage();
 const storageRef = ref(storage, "images");
 
 export const setUser = (payload) => ({
@@ -49,13 +48,12 @@ export function signOutAPI() {
 export function postArticleApi(payload) {
   return (dispatch) => {
     if (payload.image !== "") {
-      // storageRef().put(`images/${payload.image.name}`, payload.image);
-      console.log(storageRef);
-      console.log(uploadBytes(storageRef, "../images/article.png"));
-      //   .then((data) => {
-      //     console.log(data);
-      //   })
-      //   .catch((error) => console.log(error));
+      const upload = uploadBytesResumable(storageRef, payload.image);
+      upload.on("state_changed", (snapshot) => {
+        const progress =
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        console.log(progress);
+      });
     }
   };
 }
