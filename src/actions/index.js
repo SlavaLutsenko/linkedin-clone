@@ -5,7 +5,6 @@ import { SET_USER } from "./actionType";
 import { getAuth } from "firebase/auth";
 
 const auth = getAuth();
-const storageRef = ref(storage, "images");
 
 export const setUser = (payload) => ({
   type: SET_USER,
@@ -48,6 +47,7 @@ export function signOutAPI() {
 export function postArticleApi(payload) {
   return (dispatch) => {
     if (payload.image !== "") {
+      const storageRef = ref(storage, `${payload.image.name}`);
       const upload = uploadBytesResumable(storageRef, payload.image);
       upload.on("state_changed", (snapshot) => {
         const progress =
