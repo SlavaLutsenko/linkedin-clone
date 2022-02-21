@@ -39,7 +39,7 @@ const Content = styled.div`
 
 const Section = styled.section`
   min-height: 50px;
-  padding: 60px 0;
+  /* padding: 10px 0; */
   box-sizing: content-box;
   text-align: center;
   text-decoration: underline;

@@ -212,7 +212,7 @@ const NavList = styled.li`
 
 const SignOut = styled.div`
   position: absolute;
-  top: 45px;
+  top: 42px;
   background: white;
   border-radius: 0 0 5px 5px;
   width: 100px;

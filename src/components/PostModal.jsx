@@ -3,6 +3,7 @@ import styled from "styled-components";
 import ReactPlayer from "react-player";
 import { connect } from "react-redux";
 import { postArticleApi } from "../actions";
+import { Timestamp } from "firebase/firestore";
 import ShareVideoIcon from "../images/share-movie.svg";
 import ShareImageIcon from "../images/share-image.svg";
 import ShareCommentIcon from "../images/share-comment.svg";
@@ -38,6 +39,7 @@ const PostModal = (props) => {
       video: videoLink,
       user: props.user,
       description: editorText,
+      timestamp: Timestamp.now().toDate(),
     };
     props.postArticle(payload);
     reset(e);
